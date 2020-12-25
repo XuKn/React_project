@@ -1,11 +1,22 @@
 import React from 'react'
-import './css/login.less'
-import image from './imgs/login.png'
 import { Form, Input, Button, message } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import {connect} from 'react-redux'
+import {Redirect} from 'react-router-dom'
+import {createSaveUserInfoAction} from '../../redux/action_creators/login_action'
+import './css/login.less'
+import image from './imgs/login.png'
+import {reqLogin} from '../../api/index.js'
 export const NormalLoginForm = () => {
-  const onFinish = (values) => {
-    console.log('用户数据', values);
+  const onFinish = async(values) => {
+    const{username,password} = values
+    let result = await reqLogin(username,password)
+    const {status,msg,data} = result
+    if (status===0) {
+      console.log(data);
+    }else{
+      message.warning(msg)
+    }
   };
   const onFinishFailed = () => {
     message.error('表单输入错误,请检查')
@@ -85,7 +96,7 @@ export const NormalLoginForm = () => {
   )
 }
 
-export default class Login extends React.Component {
+class Login extends React.Component {
   render() {
     return (
       <div className='login'>
@@ -101,3 +112,10 @@ export default class Login extends React.Component {
     )
   }
 }
+
+export default connect(
+   state =>({}),
+  {
+    saveUserInfo: createSaveUserInfoAction,
+  }
+)(Login)
