@@ -1,4 +1,3 @@
-
 html,
 body {
   width: 100%;
@@ -14,60 +13,58 @@ body {
   width: 100%;
   height: 100%;
 }
-.login{
+
+.login {
   width: 100%;
   height: 100%;
-  background-image: url('../imgs/back.jpg');
+  background-image: url('../../../static/images/back.jpg');
   background-size: 100% 100%;
-  header{
+
+  header {
     display: flex;
     align-items: center;
-    background-color:rgba(21, 20, 13, 0.5) ;
+    background-color: rgba(21, 20, 13, 0.5);
     height: 80px;
-    img{
-      width:40px;
+
+    img {
+      margin-left: 50px;
+      margin-right: 20px;
+      width: 40px;
       height: 40px;
-      margin: 10px;
     }
-    h1{
+
+    h1 {
       font-size: 30px;
       color: white;
-      margin : 0;
+      margin: 0;
     }
-}
-  section{
-    width: 360px;
-    height: 280px;
+  }
+
+  section {
+    svg {
+      opacity: 0.5;
+    }
+    position: relative;
+    width: 400px;
+    height: 300px;
     background-color: white;
     margin: 0 auto;
     padding: 30px;
     margin-top: 50px;
-    h1{
+
+    h1 {
       font-size: 25px;
       text-align: center;
-    }
-    .input-username{
-      margin-left: 35px;
-    }
-    .input-password{
-      margin-left: 35px;
-      margin-top: 10px;
-    }
-    .login-form-button{
-      margin-left: 35px;
-      margin-top: 25px;
-      width:235px;
-    }
-    .ant-input-affix-wrapper.input-username{
-      margin: 0;
-      margin-left: 35px;
-    
-    }
-    .ant-legacy-form-explain{
-      margin-left: 35px;
-      color: red;
+      font-weight: bolder;
     }
 
+    .ant-input-affix-wrapper {
+      margin: 5px 0 5px 0;
+    }
+
+    .login-form-button {
+      margin-top: 5px;
+    }
   }
 
 }
