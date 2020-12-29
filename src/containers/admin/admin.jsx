@@ -13,13 +13,13 @@ import Role from '../role/role'
 import Bar from '../bar/bar'
 import Line from '../line/line'
 import Pie from '../pie/pie'
-import { reqCategroyList } from '../../api';
+import { reqCategoryList } from '../../api';
 import LeftNav from './left_nav/left_nav'
 
 class Admin extends React.Component {
- 
+ //商品分类请求
   Category=async() => {
-    let result =await reqCategroyList()
+    let result =await reqCategoryList()
     console.log(result);
   }
   render() {
@@ -43,6 +43,7 @@ class Admin extends React.Component {
                 <Route path='/admin/charts/bar' component={Bar}/>
                 <Route path='/admin/charts/line' component={Line}/>
                 <Route path='/admin/charts/pie' component={Pie}/>
+                <Redirect to='/admin/home'/>
               </Switch>
             </Content>
             <Footer className='footer'>推荐使用谷歌浏览器, 可以获得更佳页面操作体验!<button onClick={this.Category}>点我</button></Footer>

@@ -41,7 +41,7 @@ class Header extends React.Component {
       title: '确定要退出吗?',
       icon: <ExclamationCircleOutlined />,
       content: '退出后将重新输入账号密码登录',
-      onOk() {
+      onOk:()=> {
          this.props.deleteUserInfo()
       },
     });

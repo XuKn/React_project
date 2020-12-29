@@ -9,7 +9,7 @@ class Login extends React.Component {
     const { isLogin } = this.props;
     //如果已经登录了，重定向到admin页面
     if (isLogin) {
-      return <Redirect to="/admin" />
+      return <Redirect to="/admin/home" />
     }
     return (
       <div className='login'>
