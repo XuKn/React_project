@@ -14,11 +14,11 @@ class left_nav extends Component {
   save=(data) => {
     this.props.saveTitle(data)
   }
-
+  
   //遍历导航菜单
   createMenu = (target) => {
-   return target.map((item)=>{
-      if (!item.children) {
+   return target.map((item)=>{  
+      if (!item.children) { 
        return(<Menu.Item key={item.key} onClick={() => {
         this.save(item.title)
        }}
@@ -26,6 +26,7 @@ class left_nav extends Component {
             {item.title}
             </Link>
              </Menu.Item>)
+           
       }else{
         return(
           <SubMenu key={item.key} icon={item.icon} title={item.title}>
@@ -35,7 +36,9 @@ class left_nav extends Component {
       }
     })
   }
+  
   render() {
+    const{pathname} =this.props.location
     return (
       <div>
         <div className='left_nav'>
@@ -43,8 +46,8 @@ class left_nav extends Component {
           <h1>商品管理</h1>
         </div>
         <Menu
-          defaultSelectedKeys={this.props.location.pathname.split('/').reverse()[0]}
-          defaultOpenKeys={this.props.location.pathname.split('/').splice(2)}
+          defaultSelectedKeys={pathname.indexOf('product')!==-1?'product':pathname.split('/').reverse()[0]}
+          defaultOpenKeys={pathname.split('/').splice(2)}
           mode="inline"
           theme="dark"
         >

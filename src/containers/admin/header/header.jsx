@@ -49,7 +49,9 @@ class Header extends React.Component {
   }
   //设置标题
   menuTitles = () => {
-    let pathKey = this.props.location.pathname.split('/').reverse()[0]
+    let {pathname}=this.props.location
+    let pathKey
+    pathname.indexOf('product')!==-1?pathKey='product':pathKey = this.props.location.pathname.split('/').reverse()[0]
     let title = '';
     menuConfig.forEach((item) => {
       if(item.children instanceof Array){

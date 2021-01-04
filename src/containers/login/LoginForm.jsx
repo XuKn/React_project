@@ -87,7 +87,7 @@ import {connect} from 'react-redux'
             prefix={<LockOutlined className="site-form-item-icon" />}
             type="password"
             placeholder="密码"
-            autoComplete='off'
+            autoComplete='off' //自动补全
           />
         </Form.Item>
   
