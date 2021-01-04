@@ -14,26 +14,44 @@ class left_nav extends Component {
   save=(data) => {
     this.props.saveTitle(data)
   }
-  
+  //是否有其中的key
+  hasItem=(item) => {
+    const {userName,menus} = this.props
+    if (userName==='admin') {
+      return item
+    }
+    else if (!item.children) {
+      return menus.find((item1) => {
+        return item1 ===item.key
+      })
+    }else if (item.children) {
+        return item.children.some((item2) => {
+          return menus.indexOf(item2.key) !== -1
+        })
+      }
+  }
   //遍历导航菜单
   createMenu = (target) => {
-   return target.map((item)=>{  
+   return target.map((item)=>{
+     if (this.hasItem(item)) {
       if (!item.children) { 
-       return(<Menu.Item key={item.key} onClick={() => {
-        this.save(item.title)
-       }}
-             icon={item.icon}><Link to={item.path}>
-            {item.title}
-            </Link>
-             </Menu.Item>)
-           
-      }else{
-        return(
-          <SubMenu key={item.key} icon={item.icon} title={item.title}>
-            {this.createMenu(item.children)}
-          </SubMenu>
-        )
-      }
+        return(<Menu.Item key={item.key} onClick={() => {
+         this.save(item.title)
+        }}
+              icon={item.icon}><Link to={item.path}>
+             {item.title}
+             </Link>
+              </Menu.Item>)
+            
+       }else{
+         return(
+           <SubMenu key={item.key} icon={item.icon} title={item.title}>
+             {this.createMenu(item.children)}
+           </SubMenu>
+         )
+       }
+     }  
+     return null 
     })
   }
   
@@ -58,7 +76,9 @@ class left_nav extends Component {
   }
 }
 export default connect(
-  state=>({}),
+  state=>({menus:state.userInfo.user.role.menus,
+    userName:state.userInfo.user.username
+  }),
   {
     saveTitle:createSaveTitleAction
   }
